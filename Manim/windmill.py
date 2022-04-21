@@ -7,14 +7,18 @@ import math
 
 class Windmill(Scene):
     def construct(self):
-        ax = Axes(x_length=10, y_length=10)
-        self.add(ax)
+        bg = ImageMobject("background.jpg")
+        self.add(bg)
+        self.bring_to_back(bg)
 
-        windmill = Group()
+        #ax = Axes(x_length=10, y_length=10)
+        #self.add(ax)
+
+        windmill = VGroup()
         center = windmill.get_center()
 
         whee = Circle(radius=3.1, arc_center=center)
-        whee.set_fill(PINK, opacity=0.5)
+        whee.set_fill(PINK, opacity=0.1)
         windmill.add(whee)
         
         for i in range(3):
@@ -29,6 +33,8 @@ class Windmill(Scene):
         dot = Dot()
         dot.set_fill(BLACK)
         windmill.add(dot)
+
+        windmill.move_to(LEFT)
 
         self.play(Rotate(windmill), run_time=5, rate_func=rush_into)
         for i in range(10):
